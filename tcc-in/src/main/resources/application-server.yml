@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: tcc-in
+  datasource:
+    url: jdbc:mysql://172.18.0.2:3306/in?useAffectedRows=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: www.demons.com
+    driver-class-name: com.mysql.jdbc.Driver
+    type: org.apache.commons.dbcp2.BasicDataSource
+
+mybatis:
+  mapper-locations: classpath:mapperxml/*.xml
+  type-aliases-package: cn.moexc.tcc.in.entity
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://172.18.0.10:802/eureka/
+
+log:
+  filepath: /var/
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
+  MaxAutoRetries: 0 #同一台实例最大重试次数,不包括首次调用
+  MaxAutoRetriesNextServer: 0 #重试负载均衡其他的实例最大重试次数,不包括首次调用
+  OkToRetryOnAllOperations: false #是否所有操作都重试

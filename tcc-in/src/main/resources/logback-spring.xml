@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+	<contextName>aoplogLogback</contextName>
+	<!-- 设置log日志存放地址 -->
+	<property name="LOG_HOME" value="D:/log/" />
+	<!--<springProperty scope="context" name="LOG_HOME" source="log.filepath"/>-->
+	<!-- 控制台输出器 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoder默认配置为PartternLayoutEncoder -->
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{80}-%msg%n</pattern>
+		</encoder>
+		<target>System.out</target>
+	</appender>
+
+	<!-- 日志文件输出器 -->
+	<appender name="log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"> 
+			<!--日志文件输出的文件名 ,每天保存一次 -->
+			<FileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}-tcc-in_%i.log</FileNamePattern>
+			<!--日志文件保留天数 -->
+			<MaxHistory>180</MaxHistory>
+			<MaxFileSize>20MB</MaxFileSize>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{25}-%msg%n</pattern>
+		</encoder> 
+	</appender>
+	
+	<logger name="cn.moexc.tcc.in.service.impl.ZhangHuInImplConfirm" level="info" addtivity="false">
+		<!-- 选择输出器 -->
+		<appender-ref ref="log" />
+	</logger>
+	
+	
+	<root level="error">
+		<appender-ref ref="console" />
+	</root>
+	
+</configuration>

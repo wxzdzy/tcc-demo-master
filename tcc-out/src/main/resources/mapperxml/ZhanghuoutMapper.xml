@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.moexc.tcc.out.mapper.ZhanghuoutMapper">
+  <resultMap id="BaseResultMap" type="cn.moexc.tcc.out.entity.Zhanghuout">
+    <!--@mbg.generated-->
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="monery" jdbcType="DOUBLE" property="monery" />
+    <result column="monery_frozen" jdbcType="DOUBLE" property="moneryFrozen" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    user_id, user_name, monery, monery_frozen
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from zhanghuout
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from zhanghuout
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.moexc.tcc.out.entity.Zhanghuout">
+    <!--@mbg.generated-->
+    insert into zhanghuout (user_id, user_name, monery, 
+      monery_frozen)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{monery,jdbcType=DOUBLE}, 
+      #{moneryFrozen,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.moexc.tcc.out.entity.Zhanghuout">
+    <!--@mbg.generated-->
+    insert into zhanghuout
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="monery != null">
+        monery,
+      </if>
+      <if test="moneryFrozen != null">
+        monery_frozen,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="monery != null">
+        #{monery,jdbcType=DOUBLE},
+      </if>
+      <if test="moneryFrozen != null">
+        #{moneryFrozen,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.moexc.tcc.out.entity.Zhanghuout">
+    <!--@mbg.generated-->
+    update zhanghuout
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="monery != null">
+        monery = #{monery,jdbcType=DOUBLE},
+      </if>
+      <if test="moneryFrozen != null">
+        monery_frozen = #{moneryFrozen,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.moexc.tcc.out.entity.Zhanghuout">
+    <!--@mbg.generated-->
+    update zhanghuout
+    set user_name = #{userName,jdbcType=VARCHAR},
+      monery = #{monery,jdbcType=DOUBLE},
+      monery_frozen = #{moneryFrozen,jdbcType=DOUBLE}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
+  <update id="zhangHuOutTry" parameterType="cn.moexc.tcc.out.entity.Zhanghuout">
+    <!--@mbg.generated-->
+    update zhanghuout
+    set
+      monery = monery - #{monery,jdbcType=DOUBLE}
+    where user_id = #{userId,jdbcType=INTEGER} and monery - #{monery,jdbcType=DOUBLE} >= 0
+  </update>
+
+  <update id="zhangHuOutCancel" parameterType="cn.moexc.tcc.out.entity.Zhanghuout">
+    <!--@mbg.generated-->
+    update zhanghuout
+    set
+      monery = monery + #{monery,jdbcType=DOUBLE}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
+</mapper>

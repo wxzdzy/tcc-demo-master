@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/tcc.iml" filepath="$PROJECT_DIR$/tcc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tcc-eureka/tcc-eureka.iml" filepath="$PROJECT_DIR$/tcc-eureka/tcc-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tcc-in/tcc-in.iml" filepath="$PROJECT_DIR$/tcc-in/tcc-in.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tcc-out/tcc-out.iml" filepath="$PROJECT_DIR$/tcc-out/tcc-out.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tcc-zuul/tcc-zuul.iml" filepath="$PROJECT_DIR$/tcc-zuul/tcc-zuul.iml" />
+    </modules>
+  </component>
+</project>
